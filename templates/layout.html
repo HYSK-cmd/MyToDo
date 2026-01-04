@@ -1,0 +1,25 @@
+{% import "ui_macros.jinja2" as macros with context %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    {% block head %} {% endblock %}
+</head>
+<body>
+    <header class="header">
+        <h1 class="header__logo"><a href="{{ url_for('tasks.index') }}" class="header__link">To-do</a></h1>
+        {{ macros.add_new() }}
+    </header>
+    <main class="main">
+        <section class="dates">
+            {{ macros.show_dates(selected_date) }}
+        </section>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

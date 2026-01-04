@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    {% if not tasks %}
+        <section class="empty-list">
+            <div class="no__todo">
+                <p class="p1">No todos for this date</p>
+                <p class="p2">Click "+ Add new task" to create one !</p>
+            </div>
+        </section>
+    {% else %}
+        <section class="todo-list">
+            {% for task in tasks %}
+                <!--Check if each task is completed-->
+                {% set completed = task["_id"] in completions %}
+                {% if completed %}
+                    <div class="task completed">
+                        <form method="POST" class="task__form" action="{{ url_for('tasks.incomplete') }}">
+                            <input type="hidden" name="task_id" value="{{ task['_id'] }}" />
+                            <input type="hidden" name="date" value="{{ selected_date }}"/>
+                            <button type="submit" class="task__button">
+                                {{ task["task_description"] }}
+                            </button>
+                            <svg class="task__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="task">
+                        <form method="POST" class="task__form" action="{{ url_for('tasks.complete') }}">
+                            <input type="hidden" name="task_id" value="{{ task['_id'] }}" />
+                            <input type="hidden" name="date" value="{{ selected_date }}"/>
+                            <button type="submit" class="task__button">
+                                {{ task["task_description"] }}
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
+
+                <!--Edit/Remove-->
+                <details class="option__details">
+                    <summary class="option__summary"></summary>
+                    <form method="POST" class="option__form" action="{{ url_for('tasks.task_action') }}">
+                        <input type="hidden" name="task_id" value="{{ task['_id'] }}" />
+                        <input type="hidden" name="date" value="{{ selected_date }}"/>
+                        <button type="submit" class="option__button" name="action" value="remove">Remove</button>
+                        <button type="submit" class="option__button" name="action" value="edit">Edit</button>
+                    </form>
+                </details>
+            {% endfor %}
+        </section>
+    {% endif %}
+{% endblock %}

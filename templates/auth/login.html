@@ -1,0 +1,28 @@
+{% extends 'base.html'}
+
+{% block content %}
+<div class="login__container">
+    <div class="login__card">
+        <h1 class="login__header">MyToDo</h1>
+        <form class="login__form" method="POST">
+            <div class="login__group">
+                <label class="label">Email</label>
+                <input class="login__input" type="email" name="email" required>
+            </div>
+            <div class="login__group">
+                <label class="label">Password</label>
+                <input class="login__input" type="password" name="password" required>
+            </div>
+            <button type="submit" class="login__button">Login</button> 
+        </form>
+        <div class="divider"></div>
+        <form class="login__form" method="POST">
+            <button type="submit" class="guest__button">Continue As Guest</button> 
+        </form>
+        <p class="p__signup">
+            <span class="signup__msg">Don&#39;t have an account?</span>
+            <a class="signup__link" href="#">Sign up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

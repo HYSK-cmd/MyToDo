@@ -1,0 +1,10 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form class="form" method="POST" action="{{ url_for('tasks.update_task') }}">
+        <input type="hidden" name="task_id" value="{{ task_id }}"/>
+        <input type="hidden" name="date" value="{{ selected_date }}"/>
+        <textarea name="task_description" class="form__input" id="task_description" rows="4" placeholder="Update your task">{{ task_description }}</textarea>
+        <button type="submit" class="form__button">Update</button>
+    </form>
+{% endblock %}

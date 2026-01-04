@@ -2,6 +2,9 @@
 
 A simple and intuitive daily task management web application built with Flask and MongoDB.
 
+## Design
+![Design](image/design.png)
+
 ## Features
 
 - 📅 **Daily Task Management**: View and manage tasks for any selected date
@@ -48,12 +51,12 @@ A simple and intuitive daily task management web application built with Flask an
 
 ```
 MyToDo/
-├── app.py                  # Application factory and configuration
-├── routes.py               # Route handlers and business logic
-├── requirements.txt        # Python dependencies
+├── app.py                 # Application factory and configuration
+├── routes.py              # Route handlers and business logic
+├── requirements.txt       # Python dependencies
 ├── static/
 │   └── css/               # Stylesheets
-│       ├── login.css      # In Progress
+│       ├── login.css      # Currently in progress
 │       └── main.css
 └── templates/             # Jinja2 templates
     ├── index.html         # Main task view
@@ -61,7 +64,7 @@ MyToDo/
     ├── update_task.html   # Edit task form
     ├── layout.html        # Base layout template
     ├── ui_macros.jinja2   # Reusable UI components
-    └── auth/              # Authentication templates (In Progress)
+    └── auth/              # Authentication templates (Currently in progress)
         ├── base.html
         ├── login.html
         └── signup.html
